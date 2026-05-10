@@ -26,16 +26,18 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log('A user connected');
 
-  socket.on("username", (username) => {
+  socket.on("join", ({ username, room }) => {
     socket.username = username;
-  })
+    socket.room = room;
+    socket.join(room);
+  });
 
   // Listen for messages from the client
   socket.on('message', (message) => {
     console.log(message);
 
     // Broadcast to all clients
-    io.emit('message', `${socket.username}: ${message}`);
+    io.to(socket.room).emit('message', `${socket.username}: ${message}`);
   });
 
   // Disconnects user

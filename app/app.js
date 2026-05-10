@@ -11,7 +11,11 @@ document.querySelector("button").onclick = () => {
   socket.emit("message", text);
 }
 
-document.querySelector(".btn-user").onclick = () => {
+document.querySelector(".btn-confirm").onclick = () => {
   const username = document.querySelector(".enter-user").value;
-  socket.emit("username", username);
+  const room = document.querySelector(".enter-room").value;
+
+  const title = document.querySelector("h1");
+  title.innerHTML = `Welcome to room ${room}`;
+  socket.emit("join", { username, room });
 }
