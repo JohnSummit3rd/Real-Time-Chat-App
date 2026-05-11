@@ -17,7 +17,7 @@ function SideBar() {
       <section className="lowerSection">
         <h1>Direct Messages</h1>
         <div>
-          <div>
+          <div className="">
             <h2>Gojo Satoru</h2>
           </div>
           <div>

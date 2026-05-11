@@ -1,9 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const path = require("path");
 const { Server } = require("socket.io");
 const mongoose = require("mongoose");
 const User = require("./models/User");
+const authRoutes = require("./routes/auth");
 
 mongoose.connect("mongodb+srv://moyasu2005_db_user:YD6dVgrIpj9CHsfQ@chattr.l8acmeq.mongodb.net/?appName=Chattr")
   .then(() => console.log("Connected to MongoDB"))
@@ -11,6 +13,8 @@ mongoose.connect("mongodb+srv://moyasu2005_db_user:YD6dVgrIpj9CHsfQ@chattr.l8acm
 
 // 1. Create Express app
 const app = express();
+app.use(express.json());
+app.use("/auth", authRoutes);
 
 app.use(express.static(path.join(__dirname, "../app")));
 
