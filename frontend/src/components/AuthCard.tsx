@@ -26,6 +26,11 @@ function AuthCard({ heading, subheading, signup, noteText, noteLinkText, noteLin
           body: JSON.stringify({ email, password })
         });
         const data = await res.json();
+
+        if (!res.ok) {
+          return;
+        }
+
         localStorage.setItem('token', data.token);
         localStorage.setItem('username', JSON.stringify(data.username));
         navigate('/chat');

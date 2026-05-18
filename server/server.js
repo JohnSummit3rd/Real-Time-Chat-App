@@ -1,4 +1,5 @@
 require("dotenv").config();
+console.log(process.env.MONGO_URI)
 const express = require("express");
 const http = require("http");
 const path = require("path");
@@ -8,6 +9,8 @@ const authRoutes = require("./routes/auth");
 const cors = require('cors')
 
 mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // 1. Create Express app
 const app = express();
