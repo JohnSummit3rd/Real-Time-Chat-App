@@ -1,11 +1,11 @@
-import './App.css'
-import SideBar from './components/SideBar'
+import { BrowserRouter } from "react-router-dom";
+import Pages from "./Pages.tsx";
 
 function App() {
   return (
-    <div className="flex min-h-screen bg-[#36393f]">
-      <SideBar />
-    </div>
+    <BrowserRouter>
+      <Pages />
+    </BrowserRouter>
   )
 }
 
