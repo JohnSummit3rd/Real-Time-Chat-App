@@ -49,7 +49,10 @@ io.on('connection', (socket) => {
     console.log(message);
 
     // Broadcast to all clients
-    io.to(socket.room).emit('message', `${socket.username}: ${message}`);
+    io.to(socket.room).emit('message', {
+      username: socket.username,
+      text: message,
+    });
   });
 
   // Disconnects user
